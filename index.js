@@ -38,10 +38,18 @@ const redirectExampHandler = (req, res) => {
   res.redirect("/;");
 };
 
-const createIssue = (req, res) => {
-  console.log(req.body);
-  res.sendStatus(201);
-}
+// const createIssue = (req, res) => {
+//   console.log(req.body);
+//   res.sendStatus(201);
+// };
+
+const getIssue = (req, res) => {
+  const issue = {
+    title: 'Test',
+    description: 'test disc'
+  };
+  res.json(issue);
+};
 
 app.use(morgan('tiny'));
 app.use(express.json);
@@ -51,4 +59,5 @@ app.get("/", getRootHandlerer);
 app.get("/user/:userId", getUserHandler);
 app.get("/redirect-example", redirectExampHandler);
 app.post('/issue', createIssue);
+app.get('/issue/:id', getIssue);
 app.listen(3000);
